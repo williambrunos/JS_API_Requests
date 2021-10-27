@@ -70,3 +70,24 @@ So...here we have a bug X(
 fetch API search for some stuff from a server (3000 route) in other server (4567 route), being synchronized by lite-server, but CORS is a privacy policy between servers and its not leading us to consume the data from the 4567 route.
 
 ERROR: "Access to fetch at 'http://localhost:4567/' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled."
+
+For allowing other routes to access your API route, you have to install CORS and type this on server.js:
+
+````JS
+const cors = require('cors');
+// code . . .
+
+app.use(cors());
+````
+
+Now, all the other routes can have access to your API.
+
+## Server Auto Reloading
+
+To auto reload the server, which includes the process of interrupting and reloading the data on the API, we use nodemon dependency. For this, we have to change the parameter 'start' from 'package.json' to 'nodemon server.js' and type 'npm start' on the terminal to start the js server.
+
+````JSON
+"scripts": {
+    "start": "nodemon server.js",
+}
+````
